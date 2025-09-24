@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Sign2Text - Sign Language to Text Translation</title>
+    <title>Multilingual Sign Language to Text Translation</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
     <!-- Google Fonts -->
@@ -37,11 +37,15 @@
     }
 
     .sign-img {
-      width: 100%;
+      width: 100%; /* Fit inside column */
+      max-width: 550px; /* Bigger than before */
       height: auto;
       border-radius: 10px;
-      border: 2px solid #000;
-      margin-bottom: 20px;
+      border: 3px solid #000;
+      margin-bottom: 25px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     #videoContainer img {
@@ -77,12 +81,12 @@
           <!-- Stacked Images (Left) -->
           <div class="col-md-12 col-lg-4">
             <img
-              src="https://raw.githubusercontent.com/uzibytes/Sign2Text/master/hand-signs-of-the-ASL-Language.png"
+              src="https://raw.githubusercontent.com/AniketKu23/Multilingual-Sign-Language-Translator/master/hand-signs-of-the-ASL-Language.png"
               alt="Sign Reference 1"
               class="sign-img"
             />
             <img
-              src="https://i.ibb.co/ZJ7858c/customsl.jpg"
+              src="https://raw.githubusercontent.com/AniketKu23/Multilingual-Sign-Language-Translator/master/sign-lang-2.jpg"
               alt="Sign Reference 2"
               class="sign-img"
             />
@@ -118,7 +122,7 @@
     <div class="container-fluid copyright bg-dark py-3">
       <div class="container text-center text-light">
         <a
-          href="https://github.com/uzibytes/sign2text"
+          href="https://github.com/AniketKu23/Multilingual-Sign-Language-Translator"
           target="_blank"
           class="text-light text-decoration-none"
         >

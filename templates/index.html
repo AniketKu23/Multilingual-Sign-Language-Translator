@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sign2Text - Sign Language to Text Translation</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <style>
+    body {
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #000428, #004683);
+      font-family: "Poppins", sans-serif;
+    }
+
+    .hero-header1 {
+      margin-top: 70px;
+      background: linear-gradient(rgb(219 234 253 / 24%), rgb(116 89 122 / 19%)),
+        url("https://coolbackgrounds.io/images/backgrounds/index/ranger-4df6c1b6.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .sign-img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 2px solid #000;
+      margin-bottom: 20px;
+    }
+
+    #videoContainer img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 2px solid #000;
+    }
+
+    .controls {
+      margin-top: 1rem;
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 0.9rem;
+    }
+  </style>
+
+  <body>
+    <!-- Header -->
+    <div class="container-fluid fixed-top bg-white shadow-sm py-2">
+      <div class="container text-center">
+        <h1 class="text-primary m-0">Sign2Text</h1>
+        <p class="m-0">Convert Sign Language to Text Live</p>
+      </div>
+    </div>
+
+    <!-- Main Section -->
+    <div class="container-fluid py-5 hero-header1">
+      <div class="container py-5">
+        <div class="row g-5 align-items-start">
+          <!-- Stacked Images (Left) -->
+          <div class="col-md-12 col-lg-4">
+            <img
+              src="https://raw.githubusercontent.com/uzibytes/Sign2Text/master/hand-signs-of-the-ASL-Language.png"
+              alt="Sign Reference 1"
+              class="sign-img"
+            />
+            <img
+              src="https://i.ibb.co/ZJ7858c/customsl.jpg"
+              alt="Sign Reference 2"
+              class="sign-img"
+            />
+          </div>
+
+          <!-- Video Feed (Right) -->
+          <div class="col-md-12 col-lg-8" id="videoContainer">
+            <img src="{{ url_for('video_feed') }}" alt="Video Feed" />
+            <div class="controls d-flex align-items-center mt-3">
+              <input
+                type="text"
+                id="translatedText"
+                class="form-control me-2"
+                placeholder="Translated text will appear here"
+              />
+              <button
+                type="button"
+                id="resetButton"
+                class="btn btn-danger me-2"
+              >
+                Reset
+              </button>
+              <button type="button" id="speakButton" class="btn btn-primary">
+                Speak
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container-fluid copyright bg-dark py-3">
+      <div class="container text-center text-light">
+        <a
+          href="https://github.com/uzibytes/sign2text"
+          target="_blank"
+          class="text-light text-decoration-none"
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+            alt="GitHub"
+            style="width: 20px; height: 20px; margin-right: 5px"
+          />
+          Source Code
+        </a>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script>
+      const socket = io();
+
+      socket.on("prediction", function (data) {
+        document.getElementById("translatedText").value = data.text;
+      });
+
+      document.getElementById("resetButton").addEventListener("click", () => {
+        document.getElementById("translatedText").value = "";
+      });
+
+      document.getElementById("speakButton").addEventListener("click", () => {
+        const text = document.getElementById("translatedText").value;
+        const utterance = new SpeechSynthesisUtterance(text);
+        speechSynthesis.speak(utterance);
+      });
+    </script>
+  </body>
+</html>

@@ -1,7 +1,3 @@
-# python -m venv venv
-# source venv/bin/activate
-# pip install -r requirements.txt
-
 from flask import Flask, render_template, Response
 from flask_socketio import SocketIO, emit
 import pickle

@@ -63,11 +63,32 @@
       text-align: center;
       font-size: 0.9rem;
     }
+
+    .vit-header {
+      background: linear-gradient(135deg, #8b0000, #ff0000);
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      font-family: "Raleway", sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1030;
+    }
   </style>
 
   <body>
+    <!-- VIT Header -->
+    <div class="vit-header">Vellore Institute of Technology</div>
+
     <!-- Header -->
-    <div class="container-fluid fixed-top bg-white shadow-sm py-2">
+    <div
+      class="container-fluid fixed-top bg-white shadow-sm py-2"
+      style="margin-top: 60px"
+    >
       <div class="container text-center">
         <h1 class="text-primary m-0">Sign Language Translator</h1>
       </div>
